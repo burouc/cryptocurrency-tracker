@@ -4,12 +4,12 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 
 import store, { history } from './store';
-import App from './containers/App';
+import Root from './containers/Root';
 
 render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <App/>
+      <Root/>
     </ConnectedRouter>
   </Provider>,
   document.getElementById('root'),
