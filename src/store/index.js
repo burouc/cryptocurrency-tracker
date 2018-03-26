@@ -7,7 +7,9 @@ import rootReducer from '../reducers';
 export const history = createHistory();
 
 const
-  initialState = {},
+  initialState = {
+    selectedFiatCurrency: 'USD',
+  },
   middleware = [
     thunk,
     routerMiddleware(history),
