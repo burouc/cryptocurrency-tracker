@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 
 class CurrencyDetail extends Component {
   renderRow (i, row) {
-    const {currency} = this.props;
+    const {currency, selectedFiatCurrency} = this.props,
+      rowsWithPercentge = ['change1h', 'change24h', 'change7d'];
 
     return (
       <tr key={i}>
@@ -13,7 +14,9 @@ class CurrencyDetail extends Component {
           </strong>
         </td>
         <td>
-          {currency[row.key]}
+          {currency[row.key]} {(row.key === 'price' ||
+          row.key === 'volume24h') && selectedFiatCurrency}
+          {rowsWithPercentge.includes(row.key) && '%'}
         </td>
       </tr>
     );
@@ -37,7 +40,7 @@ class CurrencyDetail extends Component {
 
     return (
       <div>
-        <table>
+        <table className='table text-right'>
           <tbody>
           {rows
             .map((row, i) =>

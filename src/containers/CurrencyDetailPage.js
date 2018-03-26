@@ -38,21 +38,27 @@ class CurrencyDetailPage extends Component {
     return (
       <div>
         <header>
-          <Link to='/settings'>Settings</Link>
+          <div className="navbar navbar-light box-shadow">
+            <div className="container">
+              <Link className='btn btn-secondary' to="/settings">Settings</Link>
+            </div>
+          </div>
         </header>
 
-        <main>
+        <main className='container'>
           {isFetching && <h3>Loading...</h3>}
           {!isFetching && currency &&
           <CurrencyDetail selectedFiatCurrency={selectedFiatCurrency}
                           currency={currency}/>}
 
-          <div>
-            <Link to='/'>Back to list</Link>
+          <div className='clearfix'>
+            <Link to='/' className='btn btn-link'>Back to
+              list</Link>
+
+            <button className='btn btn-primary float-right'
+                    onClick={this.refresh}>Refresh
+            </button>
           </div>
-
-
-          <button onClick={this.refresh}>Refresh</button>
         </main>
       </div>
     );

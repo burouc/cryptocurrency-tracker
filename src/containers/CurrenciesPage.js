@@ -26,10 +26,14 @@ class CurrenciesPage extends Component {
     return (
       <div>
         <header>
-          <Link to="/settings">Settings</Link>
+          <div className="navbar navbar-light box-shadow">
+            <div className="container">
+              <Link className='btn btn-secondary' to="/settings">Settings</Link>
+            </div>
+          </div>
         </header>
 
-        <main>
+        <main className='container'>
           {isFetching && items.length === 0 && <h3>Loading...</h3>}
           {!isFetching && items.length === 0 && <h3>Empty.</h3>}
           {items.length > 0 &&
@@ -38,7 +42,11 @@ class CurrenciesPage extends Component {
                             selectedFiatCurrency={selectedFiatCurrency}/>
           </div>}
 
-          <button onClick={this.refresh}>Refresh</button>
+          <div className='clearfix'>
+            <button className='btn btn-primary float-right'
+                    onClick={this.refresh}>Refresh
+            </button>
+          </div>
         </main>
       </div>
     );

@@ -7,7 +7,8 @@ class CurrenciesList extends Component {
   render () {
     const {currencies, selectedFiatCurrency} = this.props;
 
-    return (<table>
+    return (
+      <table className='table text-right'>
         <thead>
         <tr>
           <th>Rank</th>

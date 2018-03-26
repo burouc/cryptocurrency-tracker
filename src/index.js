@@ -6,6 +6,8 @@ import { Router } from 'react-router-dom';
 import store, { history } from './store';
 import Root from './containers/Root';
 
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+
 render(
   <Provider store={store}>
     <Router history={history}>

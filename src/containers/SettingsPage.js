@@ -19,11 +19,11 @@ class SettingsPage extends Component {
 
   render () {
     return (
-      <div>
+      <div className='container'>
         <header>
-          <h1>
+          <h3>
             Settings
-          </h1>
+          </h3>
         </header>
         <main>
           <FiatCurrencySelect
@@ -33,7 +33,8 @@ class SettingsPage extends Component {
         </main>
 
         <div>
-          <button onClick={this.navigateBack}>Back</button>
+          <button className='btn btn-primary' onClick={this.navigateBack}>Back
+          </button>
         </div>
       </div>
     );
