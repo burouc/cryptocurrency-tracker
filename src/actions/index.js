@@ -15,6 +15,7 @@ export function selectFiatCurrency (fiatCurrency) {
   };
 }
 
+
 function requestCurrencies () {
   return {
     type: REQUEST_CURRENCIES
@@ -61,4 +62,10 @@ function shouldFetchCurrencies (state) {
   } else {
     return currencies.didInvalidate;
   }
+}
+
+export function invalidateCurrencies () {
+  return {
+    type: INVALIDATE_CURRENCIES
+  };
 }
