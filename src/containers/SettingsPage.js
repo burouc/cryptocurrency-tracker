@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 
-import { selectFiatCurrency, invalidateCurrencies } from '../actions';
+import {
+  selectFiatCurrency,
+  invalidateCurrencies
+} from '../actions';
 
 import FiatCurrencySelect from '../components/FiatCurrencySelect';
 
@@ -12,6 +14,7 @@ class SettingsPage extends Component {
     super(props);
 
     this.onFiatCurrencyChange = this.onFiatCurrencyChange.bind(this);
+    this.navigateBack = this.navigateBack.bind(this);
   }
 
   render () {
@@ -30,20 +33,14 @@ class SettingsPage extends Component {
         </main>
 
         <div>
-          <Link to={this.getBackUrl()}>Back</Link>
+          <button onClick={this.navigateBack}>Back</button>
         </div>
       </div>
     );
   }
 
-  getBackUrl () {
-    const {state} = this.props;
-
-    if (state && state.currency) {
-      return `/currency/${state.currency}`;
-    }
-
-    return '/';
+  navigateBack () {
+    this.props.history.goBack();
   }
 
   onFiatCurrencyChange (selectedFiatCurrency) {

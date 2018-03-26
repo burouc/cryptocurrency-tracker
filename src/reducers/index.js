@@ -1,12 +1,15 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
+import { find } from 'lodash';
+
 import {
   SELECT_FIAT_CURRENCY,
   REQUEST_CURRENCIES,
   RECEIVE_CURRENCIES,
   INVALIDATE_CURRENCIES
 } from '../actions';
+import { SELECT_CURRENCY } from '../actions/index';
 
 const selectedFiatCurrency = (state = 'USD', action) => {
   switch (action.type) {
@@ -16,6 +19,7 @@ const selectedFiatCurrency = (state = 'USD', action) => {
       return state;
   }
 };
+
 const currencies = (
   state = {
     isFetching: false,
@@ -44,8 +48,21 @@ const currencies = (
   }
 };
 
+const selectedCurrency = (state = null, action) => {
+  switch (action.type) {
+    case SELECT_CURRENCY:
+      const currency = find(action.currencies,
+        {'symbol': action.currencySymbol});
+
+      return currency || null;
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
   routing: routerReducer,
   selectedFiatCurrency,
-  currencies
+  currencies,
+  selectedCurrency
 });
