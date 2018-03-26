@@ -3,11 +3,16 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { selectCurrency } from '../actions';
+import { selectCurrency, fetchCurrencies } from '../actions';
 
 import CurrencyDetail from '../components/CurrencyDetail';
 
 class CurrencyDetailPage extends Component {
+  constructor (props) {
+    super(props);
+
+    this.refresh = this.refresh.bind(this);
+  }
 
   componentDidMount () {
     const {
@@ -45,9 +50,26 @@ class CurrencyDetailPage extends Component {
           <div>
             <Link to='/'>Back to list</Link>
           </div>
+
+
+          <button onClick={this.refresh}>Refresh</button>
         </main>
       </div>
     );
+  }
+
+  refresh () {
+    const {
+      dispatch,
+      match: {
+        params: {
+          symbol
+        }
+      },
+      selectedFiatCurrency
+    } = this.props;
+
+    dispatch(fetchCurrencies(selectedFiatCurrency, symbol));
   }
 }
 

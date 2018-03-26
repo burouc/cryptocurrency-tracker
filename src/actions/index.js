@@ -90,9 +90,7 @@ export function selectCurrency (currencySymbol, fiatCurrency) {
   return (dispatch, getState) => {
     const {currencies} = getState();
 
-    console.log(currencies);
-
-    if (!currencies || !currencies.items.length) {
+    if (!currencies || currencies.didInvalidate || !currencies.items.length) {
       dispatch(fetchCurrencies(fiatCurrency, currencySymbol));
     }
     else {
